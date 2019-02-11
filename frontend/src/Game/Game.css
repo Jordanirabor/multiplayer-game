@@ -1,0 +1,87 @@
+ol,
+ul {
+  padding-left: 30px;
+}
+
+.board-container {
+  position: relative;
+  border: 2px black solid;
+  box-shadow: 0 15px 20px rgba(8, 8, 8, 0.3);
+  padding: 2em;
+  left: calc(25vw);
+  top: calc(25vh);
+}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.status {
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.square {
+  background: #fff;
+  border: 2px solid #177aeb;
+  float: left;
+  font-size: 64px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 84px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 84px;
+}
+
+.square:focus {
+  outline: none;
+}
+
+.kbd-navigation .square:focus {
+  background: #ddd;
+}
+
+.game {
+  display: flex;
+  flex-direction: row;
+}
+
+.sideBar {
+  width: calc(35vw - 10%);
+  height: 100vh;
+  background: #383b3a;
+  position: absolute;
+  left: calc(75vw);
+}
+
+.availablePlayers {
+  border: 1px solid white;
+  background: rgb(200, 246, 200);
+  width: 100%;
+  height: 30%;
+  overflow-y: scroll;
+}
+
+.availablePlayers p {
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.gameStatus {
+  background: rgb(129, 131, 129);
+  text-align: center;
+  width: 100%;
+  height: 70%;
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding: 15% 0%;
+}
