@@ -6,8 +6,9 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const jwt = require('express-jwt');
 const jwksRsa = require('jwks-rsa');
-const Pusher = require("pusher");
-
+const Pusher = require('pusher');
+const dotenv = require('dotenv');
+dotenv.config();
 
 // define the Express app
 const app = express();
@@ -26,44 +27,45 @@ app.use(cors());
 app.use(morgan('combined'));
 
 let pusher = new Pusher({
-    appId: "527681",
-    key: "23919cee3b1111731271",
-    secret: "2f8af21b174ac69b928f",
-    cluster: "eu"
+  appId: process.env.PUSHER_ID,
+  key: process.env.PUSHER_KEY,
+  secret: process.env.PUSHER_SECRET,
+  cluster: process.env.PUSHER_CLUSTER
 });
 
-let username = "";
+let username = '';
 
 const checkJwt = jwt({
-    secret: jwksRsa.expressJwtSecret({
-        cache: true,
-        rateLimit: true,
-        jwksRequestsPerMinute: 5,
-        jwksUri: `https://jordan-auth0.auth0.com/.well-known/jwks.json`
-    }),
+  secret: jwksRsa.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`
+  }),
 
-    // Validate the audience and the issuer.
-    audience: '1amurNx2yOiEiW6xfkJHDRlyIoGdQ4IX',
-    issuer: `https://jordan-auth0.auth0.com/`,
-    algorithms: ['RS256']
+  // Validate the audience and the issuer.
+  audience: process.env.AUTH0_CLIENT_ID,
+  issuer: `https://${process.env.AUTH0_DOMAIN}/`,
+  algorithms: ['RS256']
 });
 
-app.post("/register", checkJwt, (req, res) => {
-    username = req.body.name
-    res.status(200).send();
+app.post('/register', checkJwt, (req, res) => {
+  console.log(process.env.AUTH0_DOMAIN);
+  username = req.body.name;
+  res.status(200).send();
 });
 
-app.post("/pusher/auth", (req, res) => {
-    let socketId = req.body.socket_id;
-    let channel = req.body.channel_name;
-    let presenceData = {
-        user_id: username
-    };
-    let auth = pusher.authenticate(socketId, channel, presenceData);
-    res.send(auth);
+app.post('/pusher/auth', (req, res) => {
+  let socketId = req.body.socket_id;
+  let channel = req.body.channel_name;
+  let presenceData = {
+    user_id: username
+  };
+  let auth = pusher.authenticate(socketId, channel, presenceData);
+  res.send(auth);
 });
 
 // start the server
 app.listen(5000, () => {
-    console.log('listening on port 5000');
+  console.log('listening on port 5000');
 });
