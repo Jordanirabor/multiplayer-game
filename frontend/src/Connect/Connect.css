@@ -1,41 +1,41 @@
 .connectBox {
-    width: 50%;
-    height: 75%;
-    position: absolute;
-    top: 10%;
-    left: 21%;
-    padding: 2em;
-    background: #383b3a;
-    box-shadow: 0 15px 20px rgba(8, 8, 8, 0.3); 
-  }
-  
-  .connectBox img {
-    display: block;
-    margin: 5% auto;
-    width: 10em;
-    height: 10em;
-  }
-  
-  .connectBox p {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: white;
-    text-align: center;
-  }
-  
-  .connectBox button{
-    background-color: #177aeb; 
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: block;
-    margin: 5% auto;
-    cursor: pointer;
-    font-size: 16px;
-  }
+  width: 50%;
+  height: 75%;
+  position: absolute;
+  top: 10%;
+  left: 21%;
+  padding: 2em;
+  background: #383b3a;
+  box-shadow: 0 15px 20px rgba(8, 8, 8, 0.3);
+}
 
-  .exit-buttton{
-    background-color: #eb4117 !important; 
-  }
+.connectBox img {
+  display: block;
+  margin: 5% auto;
+  width: 10em;
+  height: 10em;
+}
+
+.connectBox p {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+
+.connectBox button {
+  background-color: #177aeb;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  margin: 5% auto;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.exit-buttton {
+  background-color: #eb4117 !important;
+}
